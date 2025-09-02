@@ -9,8 +9,12 @@ console.log(IVA); // [121, 242, 363, 484, 605, 726, 847, 968, 1089, 1210]
 // for of Price
 for (const price of prices) {
   //   console.log(`El precio sin IVA es: ${price} y con IVA es: ${price * 1.21}`);
-  console.log(`El precio sin IVA es: ${price}`);
+  console.log(`El precio sin IVA es: >> ${price.toFixed(2)}`);
 }
+
+IVA.forEach((price) => {
+  console.log(`El precio con IVA es: >> ${price.toFixed(2)}`);
+});
 
 console.log("---------------------------------------------------");
 
