@@ -1,16 +1,13 @@
-// index.js
-import axios from "axios";
+// index.js (versión mejorada)
 
-// 🔹 Instancia base de Axios configurada
-const api = axios.create({
-  baseURL: "https://fakestoreapi.com",
-  headers: { "Content-Type": "application/json" },
-  timeout: 5000,
-});
+// 🔹 URL base de la API
+const API_URL = "https://fakestoreapi.com/products";
 
 // 🔹 Capturamos argumentos desde la terminal
 // process.argv = ["node", "index.js", "POST", "products", "New T-Shirt", "12.99", "clothing"]
 const args = process.argv.slice(2);
+
+// Destructuramos con nombres semánticos
 const [method, resource, ...rest] = args;
 
 // --- 1. Service Functions ---
@@ -18,17 +15,21 @@ const [method, resource, ...rest] = args;
 // Obtener todos los productos
 const getAllProducts = async () => {
   console.log("📦 Fetching all products...");
-  const { data } = await api.get("/products");
+  const response = await fetch(API_URL);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const products = await response.json();
   console.log("✅ All Products:");
-  console.log(data);
+  console.log(products);
 };
 
 // Obtener producto por ID
 const getProductById = async (id) => {
   console.log(`🔍 Fetching product with ID: ${id}...`);
-  const { data } = await api.get(`/products/${id}`);
+  const response = await fetch(`${API_URL}/${id}`);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const product = await response.json();
   console.log("✅ Product Found:");
-  console.log(data);
+  console.log(product);
 };
 
 // Crear producto nuevo
@@ -51,9 +52,16 @@ const createProduct = async (title, price, category) => {
     image: "https://i.pravatar.cc",
   };
 
-  const { data } = await api.post("/products", newProduct);
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newProduct),
+  });
+
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const createdProduct = await response.json();
   console.log("✅ Product Created Successfully:");
-  console.log(data);
+  console.log(createdProduct);
 };
 
 // Actualizar producto
@@ -71,17 +79,26 @@ const updateProduct = async (id, title, price, category) => {
   console.log(`📝 Updating product with ID: ${id}...`);
   const updatedProduct = { title, price: parseFloat(price), category };
 
-  const { data } = await api.put(`/products/${id}`, updatedProduct);
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedProduct),
+  });
+
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const result = await response.json();
   console.log("✅ Product Updated Successfully (simulation):");
-  console.log(data);
+  console.log(result);
 };
 
 // Eliminar producto
 const deleteProduct = async (id) => {
   console.log(`🗑 Deleting product with ID: ${id}...`);
-  const { data } = await api.delete(`/products/${id}`);
+  const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const deletedProduct = await response.json();
   console.log("✅ Product Deleted Successfully (simulation):");
-  console.log(data);
+  console.log(deletedProduct);
 };
 
 // Ayuda de comandos
@@ -132,13 +149,7 @@ const main = async () => {
         showHelp();
     }
   } catch (error) {
-    if (error.response) {
-      console.error(
-        `❌ API Error: ${error.response.status} - ${error.response.data}`
-      );
-    } else {
-      console.error("❌ Unexpected Error:", error.message);
-    }
+    console.error("❌ An error occurred:", error.message);
   } finally {
     console.log("🏁 Execution finished.");
   }
