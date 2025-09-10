@@ -36,7 +36,7 @@ Si prefieres iniciar desde cero:
 ```bash
 mkdir tienda-cli && cd tienda-cli
 npm init -y
-npm i axios E-
+npm i axios -E
 ```
 
 Luego copia el archivo `index.js` y agrega en `package.json`:
@@ -250,7 +250,7 @@ npm run start DELETE products/10
 Primero instalamos:
 
 ```bash
-npm i axios E-
+npm i axios -E
 ```
 
 Luego adaptamos tu código. Por ejemplo, la función `createProduct` pasaría de esto 👇
