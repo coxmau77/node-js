@@ -1,16 +1,30 @@
 {
   "name": "tienda-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI para gestionar productos de una tienda online usando la FakeStore API",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coxmau77/node-js.git"
+  },
+  "keywords": [
+    "cli",
+    "nodejs",
+    "fakestore",
+    "api"
+  ],
+  "author": "Mauricio Cox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coxmau77/node-js/issues"
+  },
+  "homepage": "https://github.com/coxmau77/node-js#readme",
   "dependencies": {
     "axios": "1.11.0"
   }
