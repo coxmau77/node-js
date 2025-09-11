@@ -142,21 +142,17 @@ La URL base para todas las peticiones a la API es `http://localhost:3000/api/pro
 -   **URL:** `http://localhost:3000/api/products/{idProducto}`
     *(Reemplaza `{idProducto}` con un ID de producto real de tu base de datos.)*
 
-### 4. Actualizar un Producto
+### 4. Actualizar un Producto (con o sin Imagen)
 
 -   **Método:** `PUT`
 -   **URL:** `http://localhost:3000/api/products/{idProducto}`
--   **Body:** `raw` (JSON) con los campos a actualizar.
--   **Ejemplo de Body:**
-
-    ```json
-    {
-      "price": 99,
-      "stock": 140
-    }
-    ```
+-   **Body:** `form-data`
+-   **Instrucciones del Body:**
+    Usa `form-data` para enviar los campos que deseas actualizar. Puedes incluir opcionalmente un nuevo archivo en el campo `image` para reemplazar la imagen existente.
+    -   `price` (text): `99`
+    -   `image` (file): *(Opcional) Selecciona una nueva imagen.*
 
 ### 5. Desactivar un Producto (Borrado Lógico)
 
 -   **Método:** `DELETE`
--   **URL:** `http://localhost:3000/api/products/{idProducto}`
+-   **URL:** `http://localhost:3000/api/products/{idProducto}` **URL:** `http://localhost:3000/api/products/{idProducto}`

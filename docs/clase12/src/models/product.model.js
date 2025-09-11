@@ -26,6 +26,10 @@ const productSchema = new Schema(
       required: true,
       trim: true,
     },
+    imageUrl: {
+      type: String,
+      required: false,
+    },
     isActive: {
       type: Boolean,
       default: true,

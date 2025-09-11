@@ -14,7 +14,12 @@ export async function getAllProducts(req, res) {
 
 export async function createProduct(req, res) {
   try {
-    const newProduct = await ProductService.createProduct(req.body);
+    const productData = req.body;
+    if (req.file) {
+      // Construir una URL relativa para guardar en la BD
+      productData.imageUrl = `/images/products/${req.file.filename}`;
+    }
+    const newProduct = await ProductService.createProduct(productData);
     res.status(201).json(newProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -35,7 +40,11 @@ export async function getProductById(req, res) {
 
 export async function updateProduct(req, res) {
   try {
-    const updatedProduct = await ProductService.updateProduct(req.params.id, req.body);
+    const updateData = req.body;
+    if (req.file) {
+      updateData.imageUrl = `/images/products/${req.file.filename}`;
+    }
+    const updatedProduct = await ProductService.updateProduct(req.params.id, updateData);
     if (!updatedProduct) {
       return res.status(404).json({ message: "Producto no encontrado" });
     }

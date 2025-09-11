@@ -73,4 +73,56 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Manejar la creación de productos
+  const createProductForm = document.getElementById("create-product-form");
+  const createProductResult = document.getElementById("create-product-result");
+
+  if (createProductForm) {
+    createProductForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(createProductForm);
+
+      try {
+        const response = await axios.post("/api/products", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        // Limpiar el contenedor de resultados anteriores
+        const displayContainer = document.getElementById("product-display-container");
+        displayContainer.innerHTML = ''; 
+
+        // Crear y mostrar la tarjeta del nuevo producto
+        const product = response.data;
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+          <h3>Producto Creado Exitosamente</h3>
+          <img src="${product.imageUrl}" alt="Imagen de ${product.name}" style="max-width: 200px;"/>
+          <p><strong>Nombre:</strong> ${product.name}</p>
+          <p><strong>Descripción:</strong> ${product.description}</p>
+          <p><strong>Precio:</strong> ${product.price}</p>
+          <p><strong>Stock:</strong> ${product.stock}</p>
+          <p><strong>Categoría:</strong> ${product.category}</p>
+        `;
+        displayContainer.appendChild(productCard);
+
+        createProductForm.reset(); // Limpiar el formulario
+      } catch (error) {
+        console.error("Error al crear el producto:", error);
+        const displayContainer = document.getElementById("product-display-container");
+        let errorMessage = "Error al crear el producto.";
+        if (error.response && error.response.data && error.response.data.message) {
+          errorMessage = error.response.data.message;
+        } else if (error.response && error.response.data && error.response.data.error) {
+          errorMessage = error.response.data.error;
+        }
+        displayContainer.innerHTML = `<p style="color: red;">${errorMessage}</p>`;
+      }
+    });
+  }
 });
