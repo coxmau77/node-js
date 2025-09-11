@@ -107,3 +107,56 @@ La URL base para todas las peticiones a la API es `http://localhost:3000/api/use
 
 -   **Método:** `DELETE`
 -   **URL:** `http://localhost:3000/api/users/{idUsuario}`
+
+---
+
+## Endpoints de la API para Productos
+
+La URL base para todas las peticiones a la API es `http://localhost:3000/api/products`.
+
+### 1. Crear un Nuevo Producto
+
+-   **Método:** `POST`
+-   **URL:** `http://localhost:3000/api/products`
+-   **Body:** `raw` (JSON)
+-   **Ejemplo de Body:**
+
+    ```json
+    {
+      "name": "Teclado Mecánico RGB",
+      "description": "Teclado con switches azules y retroiluminación.",
+      "price": 95,
+      "stock": 150,
+      "category": "Periféricos"
+    }
+    ```
+
+### 2. Obtener Todos los Productos
+
+-   **Método:** `GET`
+-   **URL:** `http://localhost:3000/api/products`
+
+### 3. Obtener un Producto por ID
+
+-   **Método:** `GET`
+-   **URL:** `http://localhost:3000/api/products/{idProducto}`
+    *(Reemplaza `{idProducto}` con un ID de producto real de tu base de datos.)*
+
+### 4. Actualizar un Producto
+
+-   **Método:** `PUT`
+-   **URL:** `http://localhost:3000/api/products/{idProducto}`
+-   **Body:** `raw` (JSON) con los campos a actualizar.
+-   **Ejemplo de Body:**
+
+    ```json
+    {
+      "price": 99,
+      "stock": 140
+    }
+    ```
+
+### 5. Desactivar un Producto (Borrado Lógico)
+
+-   **Método:** `DELETE`
+-   **URL:** `http://localhost:3000/api/products/{idProducto}`

@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoutes from "./src/routes/user.route.js";
+import productRoutes from "./src/routes/product.route.js";
 
 // Load environment variables
 dotenv.config();
@@ -33,9 +34,15 @@ app.use(
 ); // Serve axios
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 app.use((req, res) => {
-  res.status(404).sendFile(join(PUBLIC_DIR, "404.html")); // Custom 404 page
+  // Si la ruta no encontrada es de la API, responder con JSON
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).json({ error: "Ruta API no encontrada" });
+  }
+  // Para cualquier otra ruta, mostrar la página 404 de HTML
+  res.status(404).sendFile(join(PUBLIC_DIR, "404.html"));
 });
 
 // Database connection
