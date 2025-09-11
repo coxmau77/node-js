@@ -124,6 +124,57 @@ Curso cuatrimestral virtual que introduce al desarrollo web backend utilizando N
 - Uso de POSTMAN
 - Ejercicios
 
+### Ejemplo de Query Params
+
+Además de los path params, tenemos otro tipo de parámetros que son igual de
+importantes: los query params. A diferencia de los path params, los query params no
+forman parte del "path" de la URL. En cambio, se envían como pares clave-valor después
+de un signo de interrogación (?). Por ejemplo:
+`/items?category=electronics&price=low`
+
+En este caso, `category` y `price` son query params. Los query params son útiles para
+enviar datos adicionales, como filtros o configuraciones, sin necesidad de modificar la
+estructura de la ruta.
+
+En Express, puedes acceder a ellos mediante `req.query`. Veamos un ejemplo:
+
+```javascript
+app.get('/items', (req, res) => {
+  const category = req.query.category;
+  const price = req.query.price;
+  res.send(`Categoría: ${category}, Precio: ${price}`);
+});
+```
+
+### Implementación de Búsqueda con Query Params
+
+Para demostrar el uso de `query params` y mejorar la experiencia de usuario, hemos implementado una funcionalidad de búsqueda de usuarios en el dashboard. Esta implementación abarca tanto el backend como el frontend:
+
+**Backend (API):**
+
+-   **`docs/clase10-11/src/routes/user.route.js`**:
+    -   Se añadió una nueva ruta `GET /api/users/search` que mapea a la función `searchUsers` del controlador.
+
+-   **`docs/clase10-11/src/controllers/user.controller.js`**:
+    -   Se implementó la función `searchUsers` para manejar las solicitudes de búsqueda.
+    -   **Validación estricta:** Se añadió una validación que requiere que ambos campos (`name` y `role`) estén presentes y no vacíos para realizar la búsqueda. Si no se cumplen, se retorna un `status 400` con un mensaje específico.
+    -   **Mensajes de error mejorados:** En caso de no encontrar usuarios, se retorna un `status 404` con un mensaje detallado que incluye los criterios de búsqueda utilizados.
+
+-   **`docs/clase10-11/src/services/user.service.js`**:
+    -   Se añadió la función `searchUsers` al `UserService`.
+    -   Esta función construye una consulta a la base de datos utilizando la lógica `AND` para `name` (con búsqueda insensible a mayúsculas mediante `$regex`) y `role`.
+    -   Se asegura de que solo los parámetros de búsqueda válidos (no vacíos) sean incluidos en la consulta a la base de datos.
+
+**Frontend (Dashboard):**
+
+-   **`docs/clase10-11/public/dashboard.html`**:
+    -   Se añadió una sección de búsqueda con un formulario que incluye campos de entrada para `name` y `role`, y un área para mostrar los resultados.
+
+-   **`docs/clase10-11/public/scripts/dashboard.js`**:
+    -   Se añadió un `event listener` al formulario de búsqueda para capturar el envío.
+    -   Se realiza una llamada `GET` al endpoint `/api/users/search` enviando los valores de `name` y `role` como `query parameters`.
+    -   Se mejoró el manejo de errores para mostrar los mensajes específicos retornados por el backend, proporcionando una retroalimentación clara al usuario.
+
 ### **CLASE 12: Capa Lógica**
 
 **Descripción:** Implementación de la lógica de aplicación en controladores y servicios.
