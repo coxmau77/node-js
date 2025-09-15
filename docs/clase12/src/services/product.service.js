@@ -1,8 +1,8 @@
 import Product from "../models/product.model.js";
 
 class ProductService {
-  async getAllProducts() {
-    return Product.find({ isActive: true });
+  async getAllProducts(filter = { isActive: true }) {
+    return Product.find(filter);
   }
 
   async createProduct(productData) {
@@ -17,6 +17,14 @@ class ProductService {
 
   async updateProduct(productId, updateData) {
     return Product.findByIdAndUpdate(productId, updateData, { new: true });
+  }
+
+  async deactivateProduct(productId) {
+    return Product.findByIdAndUpdate(productId, { isActive: false }, { new: true });
+  }
+
+  async activateProduct(productId) {
+    return Product.findByIdAndUpdate(productId, { isActive: true }, { new: true });
   }
 
   async deleteProduct(productId) {

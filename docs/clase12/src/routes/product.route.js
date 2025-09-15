@@ -1,7 +1,6 @@
 import { Router } from "express";
 import * as productController from "../controllers/product.controller.js";
 import upload from "../middlewares/upload.middleware.js"; // Importar upload
-import { authenticateToken } from "../middlewares/auth.middleware.js"; // Opcional, para proteger rutas
 
 const router = Router();
 
@@ -11,6 +10,9 @@ router.get("/", productController.getAllProducts);
 router.post("/", upload.single('image'), productController.createProduct);
 router.get("/:id", productController.getProductById);
 router.put("/:id", upload.single('image'), productController.updateProduct);
+router.patch("/:id/deactivate", productController.deactivateProduct); // Nueva ruta para desactivar
+router.patch("/:id/activate", productController.activateProduct); // Nueva ruta para activar
 router.delete("/:id", productController.deleteProduct);
 
 export default router;
+

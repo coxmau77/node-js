@@ -137,4 +137,83 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // --- Lógica para Gestionar Productos ---
+  const statusFilter = document.getElementById('product-status-filter');
+  const productListContainer = document.getElementById('dashboard-product-list');
+
+  const fetchAndRenderDashboardProducts = async () => {
+    const status = statusFilter.value;
+    try {
+      const response = await axios.get(`/api/products?status=${status}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const products = response.data;
+      productListContainer.innerHTML = '';
+
+      if (products.length === 0) {
+        productListContainer.innerHTML = '<p>No hay productos que coincidan con el filtro.</p>';
+        return;
+      }
+
+      products.forEach(product => {
+        const productEl = document.createElement('div');
+        productEl.className = 'dashboard-product-item';
+        productEl.dataset.productId = product._id;
+
+        const statusText = product.isActive ? 'Activo' : 'Inactivo';
+        const actionButton = product.isActive
+          ? '<button class="btn-deactivate-dash">Desactivar</button>'
+          : '<button class="btn-activate-dash">Activar</button>';
+
+        productEl.innerHTML = `
+          <span>${product.name}</span>
+          <span>${statusText}</span>
+          <div class="dashboard-product-actions">
+            ${actionButton}
+            <button class="btn-delete-dash">Eliminar</button>
+          </div>
+        `;
+        productListContainer.appendChild(productEl);
+      });
+    } catch (error) {
+      console.error('Error al cargar productos en el dashboard:', error);
+      productListContainer.innerHTML = '<p>Error al cargar los productos.</p>';
+    }
+  };
+
+  statusFilter.addEventListener('change', fetchAndRenderDashboardProducts);
+
+  productListContainer.addEventListener('click', async (event) => {
+    const target = event.target;
+    const productItem = target.closest('.dashboard-product-item');
+    if (!productItem) return;
+
+    const productId = productItem.dataset.productId;
+
+    try {
+      if (target.classList.contains('btn-deactivate-dash')) {
+        if (confirm('¿Seguro que quieres desactivar este producto?')) {
+          await axios.patch(`/api/products/${productId}/deactivate`, {}, { headers: { Authorization: `Bearer ${token}` } });
+          fetchAndRenderDashboardProducts();
+        }
+      } else if (target.classList.contains('btn-activate-dash')) {
+        if (confirm('¿Seguro que quieres activar este producto?')) {
+          await axios.patch(`/api/products/${productId}/activate`, {}, { headers: { Authorization: `Bearer ${token}` } });
+          fetchAndRenderDashboardProducts();
+        }
+      } else if (target.classList.contains('btn-delete-dash')) {
+        if (confirm('¿Seguro que quieres ELIMINAR PERMANENTEMENTE este producto?')) {
+          await axios.delete(`/api/products/${productId}`, { headers: { Authorization: `Bearer ${token}` } });
+          fetchAndRenderDashboardProducts();
+        }
+      }
+    } catch (error) {
+      console.error('Error al realizar la acción en el producto:', error);
+      alert('No se pudo completar la acción.');
+    }
+  });
+
+  // Carga inicial de productos en el dashboard
+  fetchAndRenderDashboardProducts();
 });

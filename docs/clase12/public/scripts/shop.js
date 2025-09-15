@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Stock:</strong> ${product.stock} unidades</p>
           <div class="product-card-actions">
             <button class="btn-edit">Editar</button>
+            <button class="btn-deactivate">Desactivar</button>
             <button class="btn-delete">Eliminar</button>
           </div>
         `;
@@ -78,6 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!productCard) return;
 
     const productId = productCard.dataset.productId;
+
+    if (target.classList.contains("btn-deactivate")) {
+      if (confirm("¿Estás seguro de que quieres desactivar este producto?")) {
+        try {
+          await axios.patch(`/api/products/${productId}/deactivate`);
+          fetchAndRenderProducts(); // Recargar productos
+        } catch (error) {
+          console.error("Error al desactivar el producto:", error);
+          alert("No se pudo desactivar el producto.");
+        }
+      }
+    }
 
     if (target.classList.contains("btn-delete")) {
       if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {

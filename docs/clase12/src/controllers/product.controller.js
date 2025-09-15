@@ -5,11 +5,19 @@ import path from "node:path";
 
 export async function getAllProducts(req, res) {
   try {
-    const products = await ProductService.getAllProducts();
-    // Siempre devolver 200 OK. Si no hay productos, será un array vacío.
+    const { status } = req.query;
+    let filter = {};
+
+    if (status === 'active') {
+      filter = { isActive: true };
+    } else if (status === 'inactive') {
+      filter = { isActive: false };
+    }
+    // Si status no es 'active' o 'inactive', el filtro vacío {} traerá todos los productos.
+
+    const products = await ProductService.getAllProducts(filter);
     res.status(200).json(products || []);
   } catch (error) {
-    // Usar 500 para errores internos del servidor
     res.status(500).json({ error: error.message });
   }
 }
@@ -53,6 +61,30 @@ export async function updateProduct(req, res) {
     res.status(200).json(updatedProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+}
+
+export async function deactivateProduct(req, res) {
+  try {
+    const deactivatedProduct = await ProductService.deactivateProduct(req.params.id);
+    if (!deactivatedProduct) {
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+    res.status(200).json({ message: "Producto desactivado exitosamente." });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export async function activateProduct(req, res) {
+  try {
+    const activatedProduct = await ProductService.activateProduct(req.params.id);
+    if (!activatedProduct) {
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+    res.status(200).json({ message: "Producto activado exitosamente." });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 }
 
