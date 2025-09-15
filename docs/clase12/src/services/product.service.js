@@ -20,8 +20,8 @@ class ProductService {
   }
 
   async deleteProduct(productId) {
-    // Usamos una eliminación lógica en lugar de física
-    return Product.findByIdAndUpdate(productId, { isActive: false }, { new: true });
+    // Cambiamos a eliminación física
+    return Product.findByIdAndDelete(productId);
   }
 }
 

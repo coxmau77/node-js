@@ -1,0 +1,9 @@
+Objetivo de la clase
+En esta clase, los estudiantes comprenderán los objetos en JavaScript y aprenderán a crear y manipular tanto objetos literales como funcionales. Se introducirá la sintaxis de las clases en JavaScript, junto con el uso del operador destructuring para extraer valores de objetos y arrays de manera eficiente.
+
+Además, se explorará el operador spread como herramienta para clonar, combinar o manipular objetos y arrays
+
+Finalmente, se identificarán escenarios en los que los operadores avanzados y las clases simplifican y mejoran la legibilidad del código.
+
+
+

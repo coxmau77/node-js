@@ -1,14 +1,16 @@
+import { fileURLToPath } from "node:url";
 import ProductService from "../services/product.service.js";
+import fs from "node:fs/promises";
+import path from "node:path";
 
 export async function getAllProducts(req, res) {
   try {
     const products = await ProductService.getAllProducts();
-    if (!products || products.length === 0) {
-      return res.status(404).json({ message: "No hay productos disponibles." });
-    }
-    res.status(200).json(products);
+    // Siempre devolver 200 OK. Si no hay productos, será un array vacío.
+    res.status(200).json(products || []);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    // Usar 500 para errores internos del servidor
+    res.status(500).json({ error: error.message });
   }
 }
 
@@ -56,13 +58,32 @@ export async function updateProduct(req, res) {
 
 export async function deleteProduct(req, res) {
   try {
-    const deletedProduct = await ProductService.deleteProduct(req.params.id);
-    if (!deletedProduct) {
-      return res.status(404).json({ message: "Producto no encontrado" });
+    const productId = req.params.id;
+    const product = await ProductService.getProductById(productId);
+
+    if (product && product.imageUrl) {
+      const __dirname = path.dirname(fileURLToPath(import.meta.url));
+      // imagePath se construye relativo al directorio public
+      const imagePath = path.join(__dirname, '..', '..', 'public', product.imageUrl);
+
+      try {
+        await fs.unlink(imagePath);
+      } catch (unlinkError) {
+        if (unlinkError.code !== 'ENOENT') {
+          console.error("Error al eliminar el archivo de imagen:", unlinkError);
+          // Considerar si se debe detener el proceso si la imagen no se puede eliminar
+        }
+      }
     }
-    res.status(200).json({ message: "Producto desactivado exitosamente." });
+
+    const deletedProduct = await ProductService.deleteProduct(productId);
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Producto no encontrado para eliminar." });
+    }
+
+    res.status(200).json({ message: "Producto eliminado exitosamente." });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 }
 

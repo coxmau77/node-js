@@ -1,0 +1,6 @@
+Objetivo de la clase
+En esta clase, se repasará el concepto de funciones, sus diferentes tipos y cómo declararlas. Además, se explorarán las Higher Order Functions y su propósito en la programación.
+
+También se estudiará la estructura de los Arrays, junto con sus métodos más útiles.
+
+Finalmente, se integrará una nueva forma de crear cadenas de texto dinámicas para enriquecer las habilidades de programación de los estudiantes.

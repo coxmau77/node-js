@@ -1,0 +1,10 @@
+Clase 7: Cómo funciona la web
+Objetivo de la clase
+En esta clase, los estudiantes entenderán el modelo cliente-servidor y su importancia en la arquitectura de Internet. Aprenderán cómo las redes se comunican utilizando protocolos estándar y explorarán el funcionamiento del protocolo TCP/IP y su rol en la transferencia de datos.
+
+Además, diferenciarán entre HTTP y HTTPS, comprendiendo sus características y beneficios.
+
+También conocerán la estructura del protocolo HTTP en profundidad y descompondrán las partes que componen una URI, analizando las diferencias entre URL y URN.
+
+
+

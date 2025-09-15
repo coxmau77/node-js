@@ -41,11 +41,11 @@
             <form id="create-product-form" enctype="multipart/form-data">
                 <input type="text" id="product-name" name="name" placeholder="Nombre del producto" required>
                 <textarea id="product-description" name="description" placeholder="Descripción del producto"></textarea>
-                <input type="number" id="product-price" name="price" placeholder="Precio" required>
+                <input type="text" id="product-price" name="price" placeholder="Precio (ej: 2.999,99)" required inputmode="decimal">
                 <input type="number" id="product-stock" name="stock" placeholder="Stock" required>
                 <input type="text" id="product-category" name="category" placeholder="Categoría" required>
-                <label for="product-image">Imagen del producto:</label>
-                <input type="file" id="product-image" name="image" accept="image/*">
+                <label for="product-image">Imagen del producto (obligatorio):</label>
+                <input type="file" id="product-image" name="image" accept="image/*" required>
                 <button type="submit">Crear Producto</button>
             </form>
             <div id="product-display-container"></div>

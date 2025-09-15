@@ -1,0 +1,7 @@
+Clase 11: REQUEST & RESPONSE
+Objetivo de la clase
+En esta clase, se busca que los estudiantes comprendan y apliquen conceptos fundamentales relacionados con el manejo de rutas en aplicaciones web, permitiéndoles estructurar de manera efectiva la navegación y la interacción entre distintas secciones de una aplicación. Además, se abordará el tema de las solicitudes entre dominios a través de CORS, explicando su importancia para la seguridad y cómo configurarlo correctamente para habilitar o restringir accesos desde diferentes orígenes.
+
+También se explorará la gestión de errores, específicamente el manejo de respuestas 404, para garantizar una experiencia de usuario más consistente y profesional en caso de recursos no encontrados. Los estudiantes aprenderán a trabajar con parámetros de ruta y de consulta (path y query params), entendiendo su uso para enviar y procesar información dinámica en las solicitudes.
+
+Finalmente, se introducirá el uso de POSTMAN como una herramienta esencial para probar y documentar las API, asegurando que los estudiantes sean capaces de verificar y depurar sus aplicaciones de manera eficiente.

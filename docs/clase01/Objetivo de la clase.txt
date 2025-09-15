@@ -1,0 +1,6 @@
+Objetivo de la clase
+Recibir la bienvenida y presentación del curso.
+Conocer las herramientas a utilizar a lo largo de la cursada.
+Finalizar con el setup inicial y la instalación de las herramientas.
+Resolver dudas y consultas antes de comenzar el curso.
+

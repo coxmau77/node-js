@@ -83,6 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const formData = new FormData(createProductForm);
+      const priceValue = formData.get('price');
+
+      // Convertir el formato de precio a un número estándar
+      // Elimina los puntos de miles y reemplaza la coma decimal por un punto
+      const formattedPrice = parseFloat(priceValue.replace(/\./g, '').replace(',', '.'));
+
+      if (isNaN(formattedPrice)) {
+        alert("El formato del precio no es válido. Use el formato 1.234,56");
+        return;
+      }
+
+      formData.set('price', formattedPrice);
 
       try {
         const response = await axios.post("/api/products", formData, {

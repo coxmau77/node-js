@@ -1,0 +1,7 @@
+Objetivo de la clase
+En esta clase comprenderemos los fundamentos de Node.js como entorno de ejecución de JavaScript fuera del navegador, explorando sus características principales y cómo se diferencia del uso tradicional de JavaScript en el browser
+
+Además, se busca familiarizarse con el core de Node.js, entendiendo su funcionamiento, el modelo de single-threading y su contraste con modelos multi-threading.
+
+Finalmente, se realizará una introducción práctica para probar Node.js y adquirir experiencia inicial con su ejecución y uso.
+

@@ -1,0 +1,7 @@
+Clase 10: Modelando una API Rest
+Objetivo de la clase
+En esta clase, el objetivo principal es que los estudiantes comprendan los fundamentos del modelado de una API Rest y sean capaces de aplicarlos en un proyecto práctico.
+
+Se buscará que los alumnos adquieran una visión clara sobre la estructura de archivos necesaria para organizar el código de manera eficiente, comprendiendo la importancia de definir capas dentro de la aplicación para facilitar la escalabilidad y el mantenimiento del proyecto.
+
+Además, se enfatizará la correcta división de responsabilidades dentro de cada capa, fomentando el uso de principios de diseño que aseguren un desarrollo más ordenado y modular.

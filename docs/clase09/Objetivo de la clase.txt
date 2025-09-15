@@ -1,0 +1,7 @@
+Clase 9: Creando un Servidor Web
+Objetivo de la clase
+Los objetivos de esta clase se centran en proporcionar a los estudiantes una comprensión sólida y práctica del desarrollo de servidores en entornos JavaScript, utilizando tanto Node.js nativo como el marco de trabajo Express.js. Se espera que al finalizar la misma, los estudiantes puedan configurar y ejecutar un servidor básico en Node.js sin depender de librerías externas, entendiendo el funcionamiento interno de las solicitudes y respuestas HTTP.
+
+Además, aprenderán a instalar, configurar y utilizar Express.js, explorando herramientas como Express Generator para agilizar la creación de proyectos. Un enfoque clave será implementar un servidor que sirva contenido desde una carpeta pública, integrando conceptos básicos de enrutamiento y gestión de recursos estáticos. Por otra parte, se introducirá el concepto de middlewares en Express.js, destacando su importancia en la personalización y el manejo de flujos de datos dentro de las aplicaciones web.
+
+Finalmente crearán un repositorio en GIT y lo vincularán de forma remota con GitHub.

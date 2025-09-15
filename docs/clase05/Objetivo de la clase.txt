@@ -1,0 +1,11 @@
+Objetivo de la clase
+En esta clase, los estudiantes comprenderán qué son los gestores de paquetes y cómo utilizarlos en proyectos con Node.js. Aprenderán a iniciar y configurar un proyecto utilizando Node.js y NPM, abarcando la instalación de dependencias y la creación de scripts.
+
+Además, explorarán los módulos nativos como path, fs, y process para manejar rutas, archivos y procesos.
+
+También implementarán módulos de terceros en un proyecto mediante NPM y aprenderán a manejar rutas absolutas y relativas utilizando __dirname para acceder a archivos del servidor de manera eficiente.
+
+
+
+
+

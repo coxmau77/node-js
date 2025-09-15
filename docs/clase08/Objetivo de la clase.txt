@@ -1,0 +1,10 @@
+Clase 8: Servidores Web y patrones de Arquitectura
+Objetivo de la clase
+El objetivo de esta clase es que los estudiantes comprendan qué es un servidor y cómo funciona, distinguiendo entre un servidor de hardware y uno de software, y entendiendo la interacción entre ambos para ofrecer servicios en la red. También se busca que los alumnos identifiquen y analicen los diferentes tipos de servidores, como los servidores web, de bases de datos y de archivos, explorando sus aplicaciones prácticas en el ecosistema tecnológico.
+
+Además, se profundizará en el concepto de servidores web, explicando cómo procesan solicitudes HTTP para entregar contenido a los clientes, destacando la importancia del alojamiento y los servicios de hosting para garantizar el acceso global a sitios y aplicaciones.
+
+Finalmente, se abordarán patrones de arquitectura como MVC y API Rest, contrastando sus características y usos en el diseño y desarrollo de sistemas modernos.
+
+
+
