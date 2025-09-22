@@ -37,7 +37,7 @@ const fetchCharacters = async (options = {}) => {
         "Content-Type": "application/json",
         Authorization: "Bearer token",
       },
-      timeout: 10000, // 10 segundos timeout
+      timeout: 3000, // 3 segundos timeout
     });
 
     const allCharacters = response.data.results;
@@ -51,10 +51,10 @@ const fetchCharacters = async (options = {}) => {
 
     // Información de la consulta
     console.log("=== INFORMACIÓN DE LA CONSULTA ===");
-    console.log("📊 Status:", response.status);
-    console.log("🔢 Total de personajes disponibles:", totalCharacters);
-    console.log("📄 Páginas totales:", totalPages);
-    console.log("👤 Personajes mostrados:", charactersToShow.length);
+    console.log("- Status:", response.status);
+    console.log("- Total de personajes disponibles:", totalCharacters);
+    console.log("- Páginas totales:", totalPages);
+    console.log("- Personajes mostrados:", charactersToShow.length);
 
     if (Object.keys(options).length > 0) {
       console.log("⚙️  Parámetros usados:", options);
@@ -194,7 +194,7 @@ const runExamples = async () => {
 };
 
 // Ejecutar todos los ejemplos
-// runExamples();
+runExamples();
 
 // // Uso básico
 // fetchCharacters();

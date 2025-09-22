@@ -1,0 +1,6 @@
+Objetivo de la clase
+En esta clase, los estudiantes comprenderán el funcionamiento de Firebase Firestore como servicio de almacenamiento en la nube y su integración en aplicaciones web mediante una API. Aprenderán a configurar y estructurar una base de datos en Firestore, gestionar colecciones y documentos, y aplicar reglas de seguridad para un acceso seguro.
+
+Además, explorarán cómo consumir datos desde Firestore utilizando su SDK y consultas avanzadas, integrando esta funcionalidad dentro de una API propia.
+
+Finalmente, implementarán una arquitectura REST para estructurar y devolver los datos de manera eficiente, garantizando una comunicación clara y escalable entre el frontend y el backend.

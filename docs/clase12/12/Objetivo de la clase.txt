@@ -1,9 +1,0 @@
-Clase 12: Capa lógica
-Objetivo de la clase
-En esta clase, los estudiantes aprenderán a estructurar aplicaciones web robustas con Node.js y Express, enfocándose en la organización del código para un mantenimiento y escalabilidad eficientes. Se introducirá el concepto de Express Router para modularizar las rutas de la aplicación, permitiendo una gestión más clara y ordenada de las diferentes secciones del sitio web.
-
-Además, se explorará la separación de la lógica de la aplicación en controladores y servicios. Los controladores se encargarán de recibir las solicitudes del cliente, interactuar con los modelos y coordinar la respuesta, mientras que los servicios encapsularán la lógica de negocio reutilizable, promoviendo un código limpio y modular.
-
-Finalmente, los alumnos comprenderán cómo esta arquitectura facilita el manejo de la lógica de la aplicación, mejorando la legibilidad y la mantenibilidad.
-
-
